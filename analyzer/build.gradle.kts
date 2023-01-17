@@ -24,6 +24,9 @@ plugins {
     // Apply core plugins.
     `java-library`
 
+    // Apply pre-compiled plugins.
+    id("ort.kotlin-conventions")
+
     // Apply third-party plugins.
     alias(libs.plugins.kotlinSerialization)
 }

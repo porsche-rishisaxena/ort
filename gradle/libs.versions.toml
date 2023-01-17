@@ -62,7 +62,6 @@ wiremock = "2.35.0"
 xz = "1.9"
 
 [plugins]
-detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detektPlugin" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokkaPlugin" }
 download = { id = "de.undercouch.download", version.ref = "downloadPlugin" }
 graal = { id = "com.palantir.graal", version.ref = "graalPlugin" }
@@ -83,6 +82,7 @@ commonsEmail = { module = "org.apache.commons:commons-email", version.ref = "com
 cvssCalculator = { module = "us.springett:cvss-calculator", version.ref = "cvssCalculator" }
 cyclonedx = { module = "org.cyclonedx:cyclonedx-core-java", version.ref = "cyclonedx" }
 detektApi = { module = "io.gitlab.arturbosch.detekt:detekt-api", version.ref = "detektPlugin" }
+detektPlugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detektPlugin" }
 diskLruCache = { module = "com.jakewharton:disklrucache", version.ref = "diskLruCache" }
 exposedCore = { module = "org.jetbrains.exposed:exposed-core", version.ref = "exposed" }
 exposedDao = { module = "org.jetbrains.exposed:exposed-dao", version.ref = "exposed" }
@@ -113,6 +113,7 @@ kotestExtensionsJunitXml = { module = "io.kotest:kotest-extensions-junitxml", ve
 kotestFrameworkApi = { module = "io.kotest:kotest-framework-api", version.ref = "kotest" }
 kotestFrameworkEngine = { module = "io.kotest:kotest-framework-engine", version.ref = "kotest" }
 kotestRunnerJunit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
+kotlinPlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinPlugin" }
 kotlinxCoroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
 kotlinxHtml = { module = "org.jetbrains.kotlinx:kotlinx-html-jvm", version.ref = "kotlinxHtml" }
 kotlinxSerialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerialization" }

@@ -19,9 +19,6 @@
 
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 
-import io.gitlab.arturbosch.detekt.Detekt
-import io.gitlab.arturbosch.detekt.report.ReportMergeTask
-
 import java.net.URL
 
 import org.eclipse.jgit.api.Git
@@ -40,7 +37,6 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 @Suppress("DSL_SCOPE_VIOLATION") // See https://youtrack.jetbrains.com/issue/KTIJ-19369.
 plugins {
-    alias(libs.plugins.detekt)
     alias(libs.plugins.dokka)
     alias(libs.plugins.ideaExt)
     alias(libs.plugins.kotlin)
@@ -123,56 +119,9 @@ versionCatalogUpdate {
     sortByKey.set(false)
 }
 
-val mergeDetektReports by tasks.registering(ReportMergeTask::class) {
-    output.set(rootProject.buildDir.resolve("reports/detekt/merged.sarif"))
-}
-
 allprojects {
     repositories {
         mavenCentral()
-    }
-
-    apply(plugin = "io.gitlab.arturbosch.detekt")
-
-    // Note: Kotlin DSL cannot directly access configurations that are created by applying a plugin in the very same
-    // project, thus put configuration names in quotes to leverage lazy lookup.
-    dependencies {
-        "detektPlugins"(project(":detekt-rules"))
-
-        "detektPlugins"("io.gitlab.arturbosch.detekt:detekt-formatting:${rootProject.libs.versions.detektPlugin.get()}")
-    }
-
-    detekt {
-        // Only configure differences to the default.
-        buildUponDefaultConfig = true
-        config = files("$rootDir/.detekt.yml")
-
-        source.from(fileTree(".") { include("*.gradle.kts") }, "src/funTest/kotlin")
-
-        basePath = rootProject.projectDir.path
-    }
-
-    tasks.withType<Detekt> detekt@{
-        dependsOn(":detekt-rules:assemble")
-
-        reports {
-            html.required.set(false)
-
-            // TODO: Enable this once https://github.com/detekt/detekt/issues/5034 is resolved and use the merged
-            //       Markdown file as a GitHub Action job summary, see
-            //       https://github.blog/2022-05-09-supercharging-github-actions-with-job-summaries/.
-            md.required.set(false)
-
-            sarif.required.set(true)
-            txt.required.set(false)
-            xml.required.set(false)
-        }
-
-        finalizedBy(mergeDetektReports)
-
-        mergeDetektReports.configure {
-            input.from(this@detekt.sarifReportFile)
-        }
     }
 }
 
