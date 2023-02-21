@@ -43,6 +43,10 @@ tasks.withType<KotlinCompile>().configureEach {
     dependsOn(tasks.withType<AntlrTask>())
 }
 
+repositories {
+    mavenCentral()
+}
+
 dependencies {
     antlr(libs.antlr)
 

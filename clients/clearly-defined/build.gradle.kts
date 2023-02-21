@@ -28,6 +28,10 @@ plugins {
     alias(libs.plugins.kotlinSerialization)
 }
 
+repositories {
+    mavenCentral()
+}
+
 dependencies {
     api(libs.okhttp)
     api(libs.retrofit)

@@ -22,6 +22,10 @@ plugins {
     `java-library`
 }
 
+repositories {
+    mavenCentral()
+}
+
 dependencies {
     api(libs.log4jApiKotlin)
     api(libs.retrofit)

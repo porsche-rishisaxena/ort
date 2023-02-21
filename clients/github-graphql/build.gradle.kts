@@ -42,6 +42,10 @@ graphql {
     }
 }
 
+repositories {
+    mavenCentral()
+}
+
 dependencies {
     api(libs.ktorClientCore)
 

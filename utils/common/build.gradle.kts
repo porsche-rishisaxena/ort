@@ -22,6 +22,10 @@ plugins {
     `java-library`
 }
 
+repositories {
+    mavenCentral()
+}
+
 dependencies {
     api(libs.commonsCompress)
     api(libs.jacksonDatabind)
